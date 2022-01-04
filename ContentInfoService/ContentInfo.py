@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 from marshmallow import Schema, fields
 from typing_extensions import Required
 from bson.objectid import ObjectId
+from bson.json_util import dumps
 
 import pymongo as mongo
 import json 
@@ -38,7 +39,7 @@ class ContentInfoAPI(Resource):
             abort(400, str(errors))
 
         item = collection.find_one({'_id': ObjectId(request.args['id'])})
-        return str(item)
+        return dumps(item)
 
     def post(self):
         errors = contentInfoSchemaGET.validate(request.form)
