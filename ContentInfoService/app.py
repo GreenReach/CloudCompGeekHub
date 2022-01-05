@@ -4,7 +4,8 @@ from flask_cors import CORS
 
 import pymongo as mongo
 
-from ContentInfo import ContentInfoAPI
+from ContentInfo import ContentInfoAPI, ContentsInfoAPI
+from DetailsInfo import DetailsInfo
 from constants import CONNECTION_STRING
 
 app = Flask(__name__)
@@ -24,6 +25,7 @@ class HelloWorld(Resource):
 
 api.add_resource(HelloWorld, '/')
 api.add_resource(ContentInfoAPI, '/contentInfo')
-
+api.add_resource(ContentsInfoAPI, '/contentsInfo')
+api.add_resource(DetailsInfo, '/detailsInfo')
 if __name__ == "__main__":
   app.run()
