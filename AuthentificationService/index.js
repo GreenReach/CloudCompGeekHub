@@ -46,7 +46,30 @@ app.post('/register', async (req, res) => {
             res.status(500).send(errMsg);
         });
     
-})
+});
+
+app.post('/login', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // check credentials
+    const user = await User.findOne({ username: username });
+    if(!user) {
+        return res.status(404).send('Username doesn\'t exist');
+    }
+    if(!await bcrypt.compare(password, user.password)) {
+        return res.status(401).send('Password is wrong');
+    }
+
+    // generate jwt
+    const tokenData = {
+        username: user.username
+    };
+
+    res.status(200).json({
+        "token": jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '24h'})
+    });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
