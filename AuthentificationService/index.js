@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
 const User = require('./models/user')
-const { reset } = require('nodemon')
+const { TokenExpiredError } = require('jsonwebtoken')
 
 // configure express
 const app = express()
@@ -23,6 +23,30 @@ app.get('/ping', (req, res) => {
     res.send("pong");
 })
 
+app.post('/register', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // check if user exists
+    const userExists = await User.findOne({username: username});
+    if(userExists) {
+        return res.status(400).send("Username already exists!");
+    }
+    
+    const newUser = new User({
+        username: username,
+        password: await bcrypt.hash(password, 10)
+    });
+
+    newUser.save()
+        .then(doc => res.sendStatus(201))
+        .catch(err => {
+            const errMsg = `error while saving user ${username} to db: ${err}`;
+            console.log(errMsg);
+            res.status(500).send(errMsg);
+        });
+    
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
