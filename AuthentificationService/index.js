@@ -27,6 +27,11 @@ app.post('/register', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
+    if(!username || !password) {
+        return res.status(400).send("Request must contain username and password fields");
+    }
+
+
     // check if user exists
     const userExists = await User.findOne({username: username});
     if(userExists) {
@@ -52,6 +57,10 @@ app.post('/login', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
+    if(!username || !password) {
+        return res.status(400).send("Request must contain username and password fields");
+    }
+
     // check credentials
     const user = await User.findOne({ username: username });
     if(!user) {
@@ -70,6 +79,27 @@ app.post('/login', async (req, res) => {
         "token": jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '24h'})
     });
 });
+
+app.post('/me', async (req, res) => {
+    const token = req.body.token;
+
+    if(!token) {
+        return res.status(400).send("Request must contain token field");
+    }
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, tokenData) => {
+        if(err) {
+            return res.status(401).send("Token is wrong");
+        }
+
+        const correspondingUser = await User.findOne({username: tokenData.username});
+        if(!correspondingUser) {
+            return res.status(404).send("User not found");
+        }
+
+        return res.status(200).json(tokenData);
+    });
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
