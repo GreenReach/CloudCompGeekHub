@@ -1,5 +1,5 @@
-from flask import Flask, request, abort, send_file
-from flask_restful import Resource, Api
+from flask import request, abort, send_file
+from flask_restful import Resource
 from marshmallow import Schema, fields
 from bson.objectid import ObjectId
 from bson.json_util import dumps
@@ -39,7 +39,7 @@ class FileStorage(Resource):
         
         fs = gridfs.GridFS(db)
         data = fs.find_one(filter=dict(_id=gridId))
-        
+
         return send_file(data, attachment_filename=item['filename'], as_attachment=True)
 
     def post(self):
