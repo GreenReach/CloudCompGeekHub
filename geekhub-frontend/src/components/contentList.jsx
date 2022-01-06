@@ -8,7 +8,7 @@ class ContentList extends React.Component {
         items: [],
         searchField: "creationDate",
         orderKey: "ASCENDING",
-        numberOfResults: 2
+        numberOfResults: 10
     }
 
 
