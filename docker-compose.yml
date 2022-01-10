@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  file-service:
+    build: ./FileService
+    ports: 
+      - "5000:5000"
+
+  content-info-service:
+    build: ./ContentInfoService
+    ports: 
+      - "5001:5000"
+
+  review-service:
+    build: ./ReviewService
+    ports: 
+      - "5002:5000"
+
+  auth-service:
+    build: ./AuthentificationService
+    ports: 
+      - "3000:3000"
