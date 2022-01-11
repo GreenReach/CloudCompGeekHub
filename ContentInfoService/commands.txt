@@ -1,3 +1,5 @@
 docker build . --tag greenreach/content_info_service:v1.0
 
+docker push greenreach/content_info_service:v1.0
+
 docker run --name ContentInfoService -p 5000:5000 greenreach/content_info_service:v1.0

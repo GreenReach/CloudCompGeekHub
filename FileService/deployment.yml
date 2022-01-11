@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: content-info-deployment
+  name: file-storage-deployment
   labels:
-    app: content-info-service
+    app: file-storage-service
 
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: content-info-service
+      app: file-storage-service
 
   template:
     metadata:
       labels:
-        app: content-info-service
+        app: file-storage-service
 
     spec:
       containers:
-        - name: content-info-service
-          image: greenreach/content_info_service:v1.0
+        - name: file-storage-service
+          image: greenreach/file_storage_service:v1.0
           ports:
             - containerPort: 5000
           resources:
@@ -40,7 +40,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: content-info-service
+  name: file-storage-service
 
 spec:
   ports:
@@ -48,5 +48,5 @@ spec:
     protocol: TCP
     targetPort: 5000
   selector:
-    app: content-info-service
+    app: file-storage-service
   type: LoadBalancer

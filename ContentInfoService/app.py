@@ -1,3 +1,5 @@
+import requests
+
 from flask import Flask
 from flask_restful import Api, Resource
 from flask_cors import CORS
@@ -12,7 +14,7 @@ CORS(app)
 
 class Test(Resource):
   def get(self):
-    return "Pong"
+    return requests.get('http://file-storage-service:5000.com/test').content
   
 api.add_resource(Test, '/test')
 api.add_resource(ContentInfoAPI, '/contentInfo')
