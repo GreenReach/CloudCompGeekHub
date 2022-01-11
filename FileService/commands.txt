@@ -1,3 +1,5 @@
 docker build . --tag greenreach/file_storage_service:v1.0
 
+docker push greenreach/file_storage_service:v1.0
+
 docker run --name FileStorageService -p 5000:5000 greenreach/file_storage_service:v1.0

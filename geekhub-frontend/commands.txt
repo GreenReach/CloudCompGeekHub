@@ -1,0 +1,5 @@
+docker build . --tag greenreach/geekhub_frontend:v1.0
+
+docker push greenreach/geekhub_frontend:v1.0
+
+docker run --name GeekHubFrontend -p 3000:3000 greenreach/geekhub_frontend:v1.0

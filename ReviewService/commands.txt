@@ -1,3 +1,5 @@
-docker build . --tag review_service
+docker build . --tag greenreach/review_service:v1.0
 
-docker run --name ReviewService -p 5000:5000 review_service:latest
+docker push greenreach/review_service:v1.0
+
+docker run --name ReviewService -p 5000:5000 greenreach/review_service:v1.0

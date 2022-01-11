@@ -14,7 +14,13 @@ CORS(app)
 
 class Test(Resource):
   def get(self):
-    return requests.get('http://file-storage-service:5000/test').content + " from file storage"
+    try:
+      message = str(requests.get('http://file-storage-service:5000/test').content) + " from file storage"
+      return message
+    except Exception as e:
+      return "Tough luck" + str(e)
+      
+    
   
 api.add_resource(Test, '/test')
 api.add_resource(ContentInfoAPI, '/contentInfo')
