@@ -1,12 +1,18 @@
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Resource, Api, reqparse
+from prometheus_flask_exporter import PrometheusMetrics
 
 from pymongo import MongoClient
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
+
+metrics = PrometheusMetrics.for_app_factory()
+metrics.init_app(app)
 
 # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
 CONNECTION_STRING = "mongodb+srv://user:pass@cluster0.6zaxq.mongodb.net/ratingsDB?retryWrites=true&w=majority"
