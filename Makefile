@@ -11,7 +11,7 @@ deploy-content:
 	kubectl apply -f ContentInfoService\deployment.yml
 
 deploy-file:
-	kubectl apply -f FileServiceService\deployment.yml
+	kubectl apply -f FileService\deployment.yml
 
 deploy-review:
 	kubectl apply -f ReviewServiceService\deployment.yml

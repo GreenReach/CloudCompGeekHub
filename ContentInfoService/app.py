@@ -14,7 +14,7 @@ CORS(app)
 
 class Test(Resource):
   def get(self):
-    return requests.get('http://file-storage-service:5000.com/test').content
+    return requests.get('http://file-storage-service:5000/test').content + " from file storage"
   
 api.add_resource(Test, '/test')
 api.add_resource(ContentInfoAPI, '/contentInfo')
