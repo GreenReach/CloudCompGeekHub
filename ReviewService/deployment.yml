@@ -25,7 +25,7 @@ spec:
           resources:
             limits:
               memory: "512Mi"
-              cpu: "500m"
+              cpu: "200m"
 
           # env:
           #   - name: db_root_password
