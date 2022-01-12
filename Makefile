@@ -38,7 +38,7 @@ build-review:
 	docker push greenreach/review_service:v1.0
 
 build-front:
-	docker build ./geekhub_frontend --tag greenreach/geekhub_frontend:v1.0
+	docker build ./geekhub-frontend --tag greenreach/geekhub_frontend:v1.0
 	docker push greenreach/geekhub_frontend:v1.0
 
 clear-all:
