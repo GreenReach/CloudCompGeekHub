@@ -14,8 +14,10 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "express-prometheus-middleware": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.5"
+    "mongoose": "^6.1.5",
+    "prom-client": "^14.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
