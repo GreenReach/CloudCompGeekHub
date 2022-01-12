@@ -2,7 +2,7 @@ POST http://185.3.92.30:3000/register
 Content-Type: application/json
 
 {
-    "username": "marius",
+    "username": "marius2",
     "password": "parola123"
 }
 
@@ -11,7 +11,7 @@ POST http://185.3.92.30:3000/login
 Content-Type: application/json
 
 {
-    "username": "marius",
+    "username": "marius2",
     "password": "parola123"
 }
 
