@@ -8,7 +8,7 @@ pipeline {
     }
     stage('deploy') {
         steps {
-            sh 'make clear-all',
+            sh 'make clear-all'
             sh 'make deploy-all'
         }
     }
