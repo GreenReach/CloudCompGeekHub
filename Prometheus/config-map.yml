@@ -164,3 +164,9 @@ data:
       - job_name: "FileService"
         static_configs:
           - targets: ["file-storage-service:5000"]
+      - job_name: "ContentInfoService"
+        static_configs:
+          - targets: ["content-info-service:5000"]
+      - job_name: "ReviewService"
+        static_configs:
+          - targets: ["review-service:5000"]

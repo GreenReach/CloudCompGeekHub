@@ -1,5 +1,5 @@
 docker build . --tag greenreach/authentification_service:v1.0
 
-docker pushgreenreach/authentification_service:v1.0
+docker push greenreach/authentification_service:v1.0
 
 docker run --name AuthentificationService -p 3000:3000 greenreach/authentification_service:v1.0

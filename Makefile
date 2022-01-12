@@ -40,3 +40,16 @@ build-review:
 build-front:
 	docker build . --tag greenreach/geekhub_frontend:v1.0
 	docker push greenreach/geekhub_frontend:v1.0
+
+clear-all:
+	kubectl delete deployment auth-deployment
+	kubectl delete deployment content-info-deployment
+	kubectl delete deployment file-storage-deployment
+	kubectl delete deployment frontend-deployment
+	kubectl delete deployment review-deployment
+
+	kubectl delete service auth-service
+	kubectl delete service content-info-service
+	kubectl delete service file-storage-service
+	kubectl delete service frontend-service
+	kubectl delete service review-service
