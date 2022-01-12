@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: rsyslog
-        image: greenreach/logger-rsyslog:v1.0
+        image: jumanjiman/rsyslog:latest
         ports:
         - containerPort: 514
         resources:
