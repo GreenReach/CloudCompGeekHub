@@ -4,12 +4,14 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const promMiddleware = require('express-prometheus-middleware')
+const cors = require('cors')
 
 const User = require('./models/user')
 const { TokenExpiredError } = require('jsonwebtoken')
 
 // configure express
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 // configure prometheus middleware
