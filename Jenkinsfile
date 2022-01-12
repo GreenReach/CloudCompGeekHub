@@ -8,6 +8,7 @@ pipeline {
     }
     stage('deploy') {
         steps {
+            sh 'whoami'
             sh 'make clear-all'
             sh 'make deploy-all'
         }
