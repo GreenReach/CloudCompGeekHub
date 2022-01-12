@@ -20,25 +20,25 @@ deploy-review:
 deploy-front:
 	kubectl apply -f geekhub-frontend\deployment.yml
 
-
+	
 build-content:
-	docker build . --tag greenreach/content_info_service:v1.0
+	docker build ./ContentInfoService --tag greenreach/content_info_service:v1.0
 	docker push greenreach/content_info_service:v1.0
 
 build-auth:
-	docker build . --tag greenreach/authentification_service:v1.0
+	docker build ./AuthentificationService --tag greenreach/authentification_service:v1.0
 	docker push greenreach/authentification_service:v1.0
 	
 build-file:
-	docker build . --tag greenreach/file_storage_service:v1.0
+	docker build ./FileService --tag greenreach/file_storage_service:v1.0
 	docker push greenreach/file_storage_service:v1.0
 
 build-review:
-	docker build . --tag greenreach/review_service:v1.0
+	docker build ./ReviewService --tag greenreach/review_service:v1.0
 	docker push greenreach/review_service:v1.0
 
 build-front:
-	docker build . --tag greenreach/geekhub_frontend:v1.0
+	docker build ./geekhub_frontend --tag greenreach/geekhub_frontend:v1.0
 	docker push greenreach/geekhub_frontend:v1.0
 
 clear-all:
