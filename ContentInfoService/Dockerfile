@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 RUN apt-get update --fix-missing
 RUN apt-get install -y python3 python3-pip
-RUN pip install flask flask-restful flask-cors pymongo marshmallow dnspython requests
+RUN pip install flask flask-restful flask-cors pymongo marshmallow dnspython requests prometheus_flask_exporter
 
 EXPOSE 5000
 
