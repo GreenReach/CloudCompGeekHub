@@ -3,6 +3,7 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
+const promMiddleware = require('express-prometheus-middleware')
 
 const User = require('./models/user')
 const { TokenExpiredError } = require('jsonwebtoken')
@@ -10,6 +11,15 @@ const { TokenExpiredError } = require('jsonwebtoken')
 // configure express
 const app = express()
 app.use(express.json())
+
+// configure prometheus middleware
+app.use(promMiddleware({
+    metricsPath: '/metrics',
+    collectDefaultMetrics: true,
+    requestDurationBuckets: [0.1, 0.5, 1, 1.5],
+    requestLengthBuckets: [512, 1024, 5120, 10240, 51200, 102400],
+    responseLengthBuckets: [512, 1024, 5120, 10240, 51200, 102400]
+}));
 
 // connect to mongo db
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
