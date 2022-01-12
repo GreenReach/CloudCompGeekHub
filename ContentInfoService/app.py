@@ -18,7 +18,7 @@ metrics.init_app(app)
 class Test(Resource):
   def get(self):
     try:
-      message = str(requests.get('http://file-storage-service:5000/test').content) + " from file storage"
+      message = str(requests.get('http://auth-service:3000/metrics').content) + " from file storage"
       return message
     except Exception as e:
       return "Tough luck" + str(e)

@@ -5,4 +5,9 @@ deploy:
 	kubectl apply -f .\prometheus-service.yml
 
 clear:
-	kubectl delete namespace monitoring
+	kubectl delete clusterrole prometheus
+	kubectl delete clusterrolebinding prometheus
+	kubectl delete configmap prometheus-server-conf
+	kubectl delete deployment prometheus-deployment
+	kubectl delete service prometheus-service
+
