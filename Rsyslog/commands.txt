@@ -1,0 +1,5 @@
+docker build . --tag greenreach/logger-rsyslog:v1.0
+
+docker push greenreach/logger-rsyslog:v1.0
+
+docker run --name LoggerRsyslog greenreach/logger-rsyslog:v1.0
