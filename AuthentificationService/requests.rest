@@ -1,4 +1,4 @@
-POST http://185.3.92.30:3000/register
+POST http://localhost:3000/register
 Content-Type: application/json
 
 {

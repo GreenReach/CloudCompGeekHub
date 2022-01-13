@@ -12,6 +12,7 @@ const { TokenExpiredError } = require('jsonwebtoken')
 // configure express
 const app = express()
 app.use(cors())
+app.options('*', cors())
 app.use(express.json())
 
 // configure prometheus middleware
