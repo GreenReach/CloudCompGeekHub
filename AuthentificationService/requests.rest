@@ -1,4 +1,4 @@
-POST http://localhost:3000/register
+POST http://212.71.236.145:3000/register
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://185.3.92.30:3000/login
+POST http://212.71.236.145:3000/login
 Content-Type: application/json
 
 {
@@ -16,9 +16,9 @@ Content-Type: application/json
 }
 
 ###
-POST http://185.3.92.30:3000/me
+POST http://212.71.236.145:3000/me
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcml1cyIsImlhdCI6MTY0MTk0MzMxMywiZXhwIjoxNjQyMDI5NzEzfQ._TKYtsP-17-ZfJ4nfy4N0aVcskiLj6k_8-FHMmlSjXU"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcml1czIiLCJpYXQiOjE2NDIwODY0ODcsImV4cCI6MTY0MjE3Mjg4N30.IUBGo_J6EDF4-6Z5d0aoxHuE5w5RXrCD0BSB-pOSa0Q"
 }
