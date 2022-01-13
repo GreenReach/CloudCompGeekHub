@@ -43,7 +43,7 @@ class FileStorage(Resource):
         return send_file(data, attachment_filename=item['filename'], as_attachment=True)
 
     def post(self):
-        errors = fileStorageSchemaPOST.validate(request.form | request.files)
+        errors = fileStorageSchemaPOST.validate({**request.form, **request.files})
         if errors:
             abort(400, str(errors))
         
@@ -64,7 +64,7 @@ class FileStorage(Resource):
         if errors:
             abort(400, str(errors))
 
-        item  = collection.find_one_and_delete({"_id": ObjectId(request.form["id"])})
+        item  = collection.find_one_and_delete({"contentId": request.form["id"]})
         print(item)
         fs = gridfs.GridFS(db)
         fs.delete(ObjectId(item["gridId"]))

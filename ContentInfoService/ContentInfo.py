@@ -1,3 +1,4 @@
+from traceback import print_tb
 from flask import request, abort
 from flask_restful import Resource
 from marshmallow import Schema, fields
@@ -47,8 +48,8 @@ class ContentInfoAPI(Resource):
             abort(400, str(errors))
 
         contentInfoJSON = request.form.to_dict()
-        collection.insert_one(contentInfoJSON)
-        return {"status": "ok"}
+        result = collection.insert_one(contentInfoJSON)
+        return {"status": "ok", "result": dumps(result.inserted_id)}
 
     def delete(self):
         errors = contentInfoSchemaDELETE.validate(request.form)

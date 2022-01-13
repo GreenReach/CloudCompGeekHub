@@ -8,17 +8,19 @@ import Test from './components/testComp'
 import ContentInfo from './components/contentInfo';
 import AddContent from './components/addContent';
 import ContentList from './components/contentList';
+import Login from './components/Login';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <div id='navbar'>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/viewContent">view</Link></li>
-          <li><Link to="/test">test</Link></li>
-          <li><Link to="/addContent">Add</Link></li>
-          <li><Link to="/contentList">List</Link></li>
+          <li><p><Link to="/">Home</Link></p></li>
+          <li><p><Link to="/Login">Login</Link></p></li>
+          <li><p><Link to="/addContent">Add</Link></p></li>
+          <li><p><Link to="/contentList">List</Link></p></li>
+          <li><p><Link to="/test">test</Link></p></li>
+          <li><p>{localStorage.getItem("username")}</p></li>
         </ul>
       </div>
 
@@ -28,6 +30,7 @@ ReactDOM.render(
         <Route path="/viewContent" element={<ContentInfo />} />
         <Route path="/addContent" element={<AddContent />} />
         <Route path="/contentList" element={<ContentList />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   </React.StrictMode>,
