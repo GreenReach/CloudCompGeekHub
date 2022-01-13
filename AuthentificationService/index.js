@@ -33,7 +33,7 @@ db.once('open', () => {
 });
 
 app.get('/ping', (req, res) => {
-    res.send("pong v1.1");
+    res.send("pong v1.2");
 })
 
 app.post('/register', async (req, res) => {
