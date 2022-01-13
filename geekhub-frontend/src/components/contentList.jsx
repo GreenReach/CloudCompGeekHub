@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ContentSummary from './contentSummary';
+import {routes} from './endpoints'
 
 class ContentList extends React.Component {
 
@@ -13,17 +14,18 @@ class ContentList extends React.Component {
 
 
     componentDidMount() {
-        let endpoint = 'http://127.0.0.1:5000/contentsInfo?' + "searchField=" + this.state.searchField +
+        let endpoint = routes['contentInfo'] + '/contentsInfo?searchField=' + this.state.searchField +
             "&orderKey=" + this.state.orderKey + "&numberOfResults=" + this.state.numberOfResults;
-        console.log(endpoint)
-        fetch(endpoint)
+        
+        fetch(endpoint, {headers:{'Content-Type': 'application/json'}})
             .then(response => response.json())
             .then(data => {
-                console.log(JSON.parse(data["items"]))
+                console.log(data)
                 this.setState({
                     items: JSON.parse(data["items"]),
                     dataIsLoaded: true
                 })
+                
             });
     }
 

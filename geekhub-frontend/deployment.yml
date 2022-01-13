@@ -25,8 +25,8 @@ spec:
             - containerPort: 3000
           resources:
             limits:
-              memory: "256Mi"
-              cpu: "200m"
+              memory: "512Mi"
+              cpu: "250m"
 
 ---
 apiVersion: v1
@@ -35,11 +35,12 @@ metadata:
   name: frontend-service
 
 spec:
+  type: NodePort
   ports:
   - name: frontend-port
     port: 3000
     protocol: TCP
     targetPort: 3000
+    nodePort: 31000
   selector:
     app: frontend-app
-  type: LoadBalancer

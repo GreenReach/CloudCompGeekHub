@@ -1,5 +1,7 @@
 import react from 'react';
 import React, { Component } from 'react';
+import { Navigate } from 'react-router-dom';
+import { routes } from './endpoints'
 
 var contentTypeRadioButtons = [];
 class AddContent extends React.Component {
@@ -12,7 +14,10 @@ class AddContent extends React.Component {
         allContentTypes: [],
         allTags: [],
         currentTypeTags: [],
+        contentFile: null,
+        newContentId: null,
         dataIsLoaded: false,
+        redirectToList:false
     };
 
 
@@ -46,12 +51,12 @@ class AddContent extends React.Component {
 
     submitContent() {
         var time = new Date()
-        var datetime = time.getFullYear() + "-" + (time.getMonth()+1) + "-" + time.getDate() + "T" + time.getHours() + ":" + time.getMinutes()
-        
+        var datetime = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + "T" + time.getHours() + ":" + time.getMinutes()
+
         var formdata = new FormData();
         formdata.append("title", this.state.title);
-        formdata.append("userId", this.state.description);
-        formdata.append("description", this.state.userId);
+        formdata.append("userId", this.state.userId);
+        formdata.append("description", this.state.description);
         formdata.append("contentType", this.state.contentType);
         formdata.append("tags", this.state.tags.toString());
         formdata.append("creationDate", datetime);
@@ -60,15 +65,32 @@ class AddContent extends React.Component {
             method: "POST",
             body: formdata
         }
-        fetch('http://127.0.0.1:5000/contentInfo', requestOptions)
+        fetch(routes['contentInfo'] + 'contentInfo', requestOptions)
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => {
+                console.log(data)
+                this.setState({ "newContentId": JSON.parse(data['result'])['$oid'] })
+
+                var contentForm = new FormData();
+                contentForm.append("contentFile", this.state.contentFile);
+                contentForm.append("contentId", this.state.newContentId);
+                requestOptions.body = contentForm;
+                fetch(routes['file'] + 'fileStorage', requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        this.setState({"redirectToList":true})
+                    });
+            });
+
     }
 
-
+    onChangeHandler = event => {
+        this.setState({ "contentFile": event.target.files[0] })
+    }
 
     componentDidMount() {
-        fetch('http://127.0.0.1:5000/detailsInfo')
+        fetch(routes['contentInfo'] + 'detailsInfo')
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -122,6 +144,11 @@ class AddContent extends React.Component {
 
                     <br />
                     <br />
+
+                    <input type="file" name="file" onChange={this.onChangeHandler} />
+
+                    <br />
+                    <br />
                     Tags
                     {this.state.currentTypeTags.map((tag) => (
                         <label key={tag}>
@@ -138,6 +165,7 @@ class AddContent extends React.Component {
                     ))}
                 </form>
                 <button onClick={() => this.submitContent()}>Submit</button>
+                {this.state.redirectToList ? (<Navigate to="/contentList" />) : null}
             </div>
         );
     }

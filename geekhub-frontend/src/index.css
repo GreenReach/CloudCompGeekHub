@@ -23,9 +23,9 @@ li {
   float: left;
 }
 
-li a {
+li p {
   display: block;
-  padding: 8px;
+  padding: 4px;
   
 }
 
