@@ -1,6 +1,6 @@
 export const routes = {
-    "file": "http://127.0.0.7:5000/",
-    "contentInfo": "http://127.0.0.7:5001/",
-    "review": "http://127.0.0.7:5002/",
-    "auth": "http://127.0.0.7:3000/"
+    "file": "http://file-storage-service:5000/",
+    "contentInfo": "http://content-info-service:5000/",
+    "review": "http://review-service:5000/",
+    "auth": "http://auth-service:3000/"
 }
